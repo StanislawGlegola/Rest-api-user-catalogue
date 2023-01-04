@@ -1,5 +1,8 @@
 spring:
   datasource:
-    url: "${DB_URL}"
+    url: jdbc:mysql://localhost:3306/userCatalogue?useSSL=false
     username: "${DB_USERNAME}"
     password: "${DB_PASSWORD}"
+
+server:
+  port: 8080
