@@ -1,0 +1,49 @@
+package pl.sg.usercatalogue.repository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+import pl.sg.usercatalogue.model.User;
+
+import java.util.List;
+
+@Repository
+public class JDBCUserRepository implements UserRepository {
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    @Override
+    public List<User> getUserList() {
+        return jdbcTemplate.query("SELECT id, username, age FROM userCatalogue.user",
+                BeanPropertyRowMapper.newInstance(User.class));
+    }
+
+    @Override
+    public User getUserById(long userId) {
+        return jdbcTemplate.queryForObject("SELECT id, username, age FROM userCatalogue.user WHERE id = ?",
+                BeanPropertyRowMapper.newInstance(User.class),
+                userId);
+    }
+
+    @Override
+    public void addUser(List<User> userList) {
+        userList.forEach(user -> jdbcTemplate
+                .update("INSERT user(username, age) values(?,?)",
+                        user.getUserName(), user.getAge()
+                ));
+    }
+
+    @Override
+    public int updateUser(User user) {
+        return jdbcTemplate.update("UPDATE user SET username = ?, age = ? WHERE id = ? ",
+                user.getUserName(), user.getAge(), user.getId());
+    }
+
+    @Override
+    public void deleteUserById(long id) {
+        jdbcTemplate.update("DELETE from userCatalogue.user WHERE id = ?"
+                , id);
+    }
+}
