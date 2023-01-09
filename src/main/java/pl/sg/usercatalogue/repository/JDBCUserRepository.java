@@ -11,8 +11,12 @@ import java.util.List;
 @Repository
 public class JDBCUserRepository implements UserRepository {
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public JDBCUserRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @Override
     public List<User> getUserList() {

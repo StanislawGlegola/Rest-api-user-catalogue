@@ -1,6 +1,8 @@
 package pl.sg.usercatalogue.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.sg.usercatalogue.model.User;
 import pl.sg.usercatalogue.repository.JDBCUserRepository;
 
@@ -11,6 +13,7 @@ public class UserService {
 
     private JDBCUserRepository jdbcUserRepository;
 
+    @Autowired
     public UserService(JDBCUserRepository jdbcUserRepository){
         this.jdbcUserRepository = jdbcUserRepository;
     }
@@ -23,15 +26,18 @@ public class UserService {
         return jdbcUserRepository.getUserById(userId);
     }
 
+    @Transactional
     public int addUser(List<User> userList) {
         jdbcUserRepository.addUser(userList);
         return 1;
     }
 
+    @Transactional
     public void updateUser(User user) {
         jdbcUserRepository.updateUser(user);
     }
 
+    @Transactional
     public int deleteUserById(long id) {
         jdbcUserRepository.deleteUserById(id);
         return 1;
