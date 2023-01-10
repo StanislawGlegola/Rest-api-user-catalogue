@@ -27,9 +27,8 @@ public class UserService {
     }
 
     @Transactional
-    public int addUser(List<User> userList) {
+    public void addUser(List<User> userList) {
         jdbcUserRepository.addUser(userList);
-        return 1;
     }
 
     @Transactional
@@ -38,8 +37,7 @@ public class UserService {
     }
 
     @Transactional
-    public int deleteUserById(long id) {
+    public void deleteUserById(long id) {
         jdbcUserRepository.deleteUserById(id);
-        return 1;
     }
 }
