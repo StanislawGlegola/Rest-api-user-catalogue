@@ -49,7 +49,6 @@ public class UserController {
     @PutMapping(path = "/update/{id}")
     public void updateUser(@PathVariable("id") long id, @RequestBody User updatedUser) {
         User user = userService.getUserById(id);
-
         if (user != null) {
             user.setUserName(updatedUser.getUserName());
             user.setAge(updatedUser.getAge());
