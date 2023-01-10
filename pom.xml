@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>pl.sg</groupId>
-    <artifactId>usercatalogue</artifactId>
+    <artifactId>usercatalog</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>usercatalogue</name>
-    <description>Simple User Catalogue</description>
+    <name>usercatalog</name>
+    <description>Simple User Catalog</description>
     <properties>
         <java.version>16</java.version>
     </properties>

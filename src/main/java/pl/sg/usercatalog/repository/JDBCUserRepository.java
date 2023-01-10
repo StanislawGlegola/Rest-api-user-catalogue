@@ -1,10 +1,10 @@
-package pl.sg.usercatalogue.repository;
+package pl.sg.usercatalog.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import pl.sg.usercatalogue.model.User;
+import pl.sg.usercatalog.model.User;
 
 import java.util.List;
 
@@ -20,13 +20,13 @@ public class JDBCUserRepository implements UserRepository {
 
     @Override
     public List<User> getUserList() {
-        return jdbcTemplate.query("SELECT id, username, age FROM userCatalogue.user",
+        return jdbcTemplate.query("SELECT id, username, age FROM userCatalog.user",
                 BeanPropertyRowMapper.newInstance(User.class));
     }
 
     @Override
     public User getUserById(long userId) {
-        return jdbcTemplate.queryForObject("SELECT id, username, age FROM userCatalogue.user WHERE id = ?",
+        return jdbcTemplate.queryForObject("SELECT id, username, age FROM userCatalog.user WHERE id = ?",
                 BeanPropertyRowMapper.newInstance(User.class),
                 userId);
     }
@@ -47,7 +47,7 @@ public class JDBCUserRepository implements UserRepository {
 
     @Override
     public void deleteUserById(long id) {
-        jdbcTemplate.update("DELETE from userCatalogue.user WHERE id = ?"
+        jdbcTemplate.update("DELETE from userCatalog.user WHERE id = ?"
                 , id);
     }
 }

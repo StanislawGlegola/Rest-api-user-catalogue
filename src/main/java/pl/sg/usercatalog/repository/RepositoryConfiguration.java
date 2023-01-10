@@ -1,4 +1,4 @@
-package pl.sg.usercatalogue.repository;
+package pl.sg.usercatalog.repository;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

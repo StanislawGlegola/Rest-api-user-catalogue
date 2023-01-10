@@ -1,4 +1,4 @@
-package pl.sg.usercatalogue.service;
+package pl.sg.usercatalog.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
-package pl.sg.usercatalogue.repository;
+package pl.sg.usercatalog.repository;
 
-import pl.sg.usercatalogue.model.User;
+import pl.sg.usercatalog.model.User;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package pl.sg.usercatalogue;
+package pl.sg.usercatalog;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,10 +1,10 @@
-package pl.sg.usercatalogue;
+package pl.sg.usercatalog;
 
 import io.restassured.RestAssured;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 
-class UserCatalogueApplicationTests {
+class UserCatalogApplicationTests {
 
     @Test
     void contextLoads() {

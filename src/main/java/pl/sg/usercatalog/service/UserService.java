@@ -1,10 +1,10 @@
-package pl.sg.usercatalogue.service;
+package pl.sg.usercatalog.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.sg.usercatalogue.model.User;
-import pl.sg.usercatalogue.repository.JDBCUserRepository;
+import pl.sg.usercatalog.model.User;
+import pl.sg.usercatalog.repository.JDBCUserRepository;
 
 import java.util.List;
 
