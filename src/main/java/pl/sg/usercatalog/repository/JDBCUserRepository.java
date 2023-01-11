@@ -40,8 +40,8 @@ public class JDBCUserRepository implements UserRepository {
     }
 
     @Override
-    public int updateUser(User user) {
-        return jdbcTemplate.update("UPDATE user SET username = ?, age = ? WHERE id = ? ",
+    public void updateUser(User user) {
+        jdbcTemplate.update("UPDATE user SET username = ?, age = ? WHERE id = ? ",
                 user.getUserName(), user.getAge(), user.getId());
     }
 
