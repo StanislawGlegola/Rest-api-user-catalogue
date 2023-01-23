@@ -2,33 +2,38 @@
 Notice that it can risk with suboptimal code appliance in this particular project. <br>
 But as I mentioned - it's just a dojo."
 
-<strong>DB login credentials added with environment variables:</strong>
+<strong>DB login credentials added in environment variables:</strong>
 <br>
 <em>
-DB_URL=jdbc:mysql://localhost:3306/userCatalog?allowPublicKeyRetrieval=true&useSSL=false; <br>
-DB_USERNAME=root; <br>
-DB_PASSWORD=p@55w0rd; <br>
-DB_DRIVER=com.mysql.cj.jdbc.Driver; <br>
-DB_HOST=localhost; <br>
-DB_PORT=3306; <br>
-DB_SID=userCatalog <br>
+MYSQL_DB_URL=jdbc:mysql://localhost:3306/userCatalog?allowPublicKeyRetrieval=true&useSSL=false;
+<br>MYSQL_DB_USERNAME=root;
+<br>MYSQL_DB_PASSWORD=p@55w0rd;
+<br>MYSQL_DB_DRIVER=com.mysql.cj.jdbc.Driver;
+<br>MYSQL_DB_HOST=localhost;
+<br>MYSQL_DB_PORT=3306;
+<br>MYSQL_DB_SID=userCatalog;
+<br>ORACLE_DB_URL=jdbc:oracle://localhost:1521/userCatalog;
+<br>ORACLE_DB_USERNAME=root;
+<br>ORACLE_DB_PASSWORD=p@55w0rd;
+<br>ORACLE_DB_DRIVER=oracle.jdbc.OracleDriver;
+<br>ORACLE_DB_HOST=localhost;
+<br>ORACLE_DB_PORT=1521;
+<br>ORACLE_DB_SID=userCatalog-oracle
 </em>
 
-<strong>Instalation and lunching data base</strong><br>
+<strong>Installation and lunching mysql database</strong><br>
 <em>
 docker pull mysql <br>
-docker run --name usercatalog-mysql -e MYSQL_ROOT_PASSWORD=p@55w0rd -d -p 3306:3306 mysql <br>
+docker run --name userCatalog-mysql -e MYSQL_ROOT_PASSWORD=p@55w0rd -d -p 3306:3306 mysql <br>
 </em>
 
-<strong>Creating sql table</strong><br>
+<strong>Installation and lunching oracle database</strong><br>
 <em>
-CREATE TABLE `userCatalog`.`user` (
-`id` INT NOT NULL AUTO_INCREMENT,
-`name` VARCHAR(200) NULL,
-`age` INT NULL,
-PRIMARY KEY (`id`));
-</em>
+docker login container-registry.oracle.com <br>
+https://container-registry.oracle.com/ords/f?p=113:4:115147643125591:::4:P4_REPOSITORY,AI_REPOSITORY,AI_REPOSITORY_NAME,P4_REPOSITORY_NAME,P4_EULA_ID,P4_BUSINESS_AREA_ID:9,9,Oracle%20Database%20Enterprise%20Edition,Oracle%20Database%20Enterprise%20Edition,1,0&cs=3qvhOCzFe_YFthGH4ePyb0rMp0SLlP222RUJM1IJja8DYckLVkPdOhrKQpOmF3VnfIOo3choGVKQWffs12MPPsA
 <br>
+docker run -d --name userCatalog-oracle -e ORACLE_SID=userCatalog -e ORACLE_PDB=root -e ORACLE_PWD=p@55w0rd -p 1521:1521 --shm-size="8g" container-registry.oracle.com/database/enterprise:21.3.0.0
+<br></em>
 
 <strong>Access to swagger-ui</strong><br>
 <em>http://localhost:8080/swagger-ui.html <br></em>
