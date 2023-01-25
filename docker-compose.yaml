@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  mysql:
+    container_name: userCatalog-mysql
+    image: mysql
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      MYSQL_ROOT_PASSWORD: $MYSQL_DB_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DB_SID
+      MYSQL_PASSWORD: $MYSQL_DB_PASSWORD
+    ports:
+      - $MYSQL_DB_PORT:3306

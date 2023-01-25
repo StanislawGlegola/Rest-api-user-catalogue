@@ -1,6 +1,6 @@
 "# Rest-api-user-catalog is a dojo project realized in spare time to summarize knowledge. <br> It revolve around combining various technologies in single repository.
 Notice that it can risk with suboptimal code appliance in this particular project. <br>
-But as I mentioned - it's just a dojo."
+But as I mentioned - it's a dojo."
 
 <strong>DB login credentials added in environment variables:</strong>
 <br>
@@ -21,6 +21,14 @@ MYSQL_DB_URL=jdbc:mysql://localhost:3306/userCatalog?allowPublicKeyRetrieval=tru
 <br>ORACLE_DB_SID=userCatalog-oracle
 </em>
 
+<strong>Access to swagger-ui</strong><br>
+<em>http://localhost:8080/swagger-ui.html <br></em>
+
+<strong>Docker compose this project</strong><br>
+<em>docker-compose up -d </em>
+
+<--      Below deprecated. Will soon be deleted    --!>
+
 <strong>Installation and lunching mysql database</strong><br>
 <em>
 docker pull mysql <br>
@@ -34,6 +42,3 @@ https://container-registry.oracle.com/ords/f?p=113:4:115147643125591:::4:P4_REPO
 <br>
 docker run -d --name userCatalog-oracle -e ORACLE_SID=userCatalog -e ORACLE_PDB=root -e ORACLE_PWD=p@55w0rd -p 1521:1521 --shm-size="8g" container-registry.oracle.com/database/enterprise:21.3.0.0
 <br></em>
-
-<strong>Access to swagger-ui</strong><br>
-<em>http://localhost:8080/swagger-ui.html <br></em>
