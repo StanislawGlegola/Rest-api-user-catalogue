@@ -1,3 +1,5 @@
 databaseChangeLog:
   - include:
       file: db/changelog/db.changelog-001-create-user-catalog.yaml
+  - include:
+      file: db/changelog/db.changelog-002-fill-db-dummy-values.yaml

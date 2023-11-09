@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create table userCatalog
+      author: sglegola
+      changes:
+        - sql:
+            sql: "INSERT into userCatalog.user (id, userName, age) values (1, 'Kasia', 32)"
+        - sql:
+            sql: "INSERT into userCatalog.user (id, userName, age) values (2, 'Stanisław', 33)"
+        - sql:
+            sql: "INSERT into userCatalog.user (id, userName, age) values (3, 'Roman', 34)"
+        - sql:
+            sql: "INSERT into userCatalog.user (id, userName, age) values (4, 'Adrianna', 1)"
+        - sql:
+            sql: "INSERT into userCatalog.user (id, userName, age) values (5, 'Chris', 35)"
+        - sql:
+            sql: "INSERT into userCatalog.user (id, userName, age) values (6, 'Bobby', 5)"
