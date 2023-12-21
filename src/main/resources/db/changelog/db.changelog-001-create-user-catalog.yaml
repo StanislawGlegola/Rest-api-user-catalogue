@@ -3,10 +3,10 @@ databaseChangeLog:
       id: Create table userCatalog
       author: sglegola
       changes:
-        - sql:
-            sql: "CREATE TABLE `userCatalog`.`user` (
-                 `id` INT NOT NULL AUTO_INCREMENT,
-                 `userName` VARCHAR(200) NULL,
-                 `age` INT NULL,
-                  PRIMARY KEY (`id`));
-                  "
+        - sql: |
+            CREATE TABLE `userCatalog`.`user` (
+              `id` INT NOT NULL AUTO_INCREMENT,
+              `userName` VARCHAR(200) NULL,
+              `age` INT NULL,
+              PRIMARY KEY (`id`)
+            );
