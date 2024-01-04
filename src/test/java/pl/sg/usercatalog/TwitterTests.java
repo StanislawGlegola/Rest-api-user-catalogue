@@ -4,7 +4,7 @@ import io.restassured.RestAssured;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 
-class UserCatalogApplicationTests {
+class TwitterTests {
 
     @Test
     void contextLoads() {

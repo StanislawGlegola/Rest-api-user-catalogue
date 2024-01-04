@@ -1,10 +1,10 @@
 databaseChangeLog:
   - changeSet:
-      id: Create table userCatalog
+      id: Create table user
       author: sglegola
       changes:
         - sql: |
-            CREATE TABLE `userCatalog`.`user` (
+            CREATE TABLE `twitter`.`user` (
               `id` INT NOT NULL AUTO_INCREMENT,
               `userName` VARCHAR(200) NULL,
               `age` INT NULL,
