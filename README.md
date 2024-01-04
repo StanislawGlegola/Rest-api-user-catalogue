@@ -7,8 +7,8 @@ But as I mentioned - it's a dojo."
 <br>DB_USERNAME=root;
 <br>DB_PASSWORD=p@55w0rd;
 <br>DB_HOST=localhost;
-<br>USER_DB_PORT=3306;
-<br>USER_DB_SID=userCatalog;
+<br>DB_PORT=3306;
+<br>DB_SID=twitter;
 </em>
 
 <strong>Access to swagger-ui</strong><br>
@@ -20,5 +20,5 @@ But as I mentioned - it's a dojo."
 <strong>Installation and lunching mysql database</strong><br>
 <em>
 docker pull mysql <br>
-docker run --name userCatalog-mysql -e MYSQL_ROOT_PASSWORD=p@55w0rd -d -p 3306:3306 mysql <br>
+docker run --name twitter-mysql -e MYSQL_ROOT_PASSWORD=p@55w0rd -d -p 3306:3306 mysql <br>
 </em>

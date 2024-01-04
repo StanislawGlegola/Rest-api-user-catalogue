@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>pl.sg</groupId>
-    <artifactId>usercatalog</artifactId>
+    <artifactId>twitter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>usercatalog</name>
     <description>Simple User Catalog</description>
