@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: Fill db with dummy values
+      id: Fill user table with dummy values
       author: sglegola
       changes:
         - sql: INSERT into userCatalog.user (id, userName, age) values (1, 'Kasia', 32)
