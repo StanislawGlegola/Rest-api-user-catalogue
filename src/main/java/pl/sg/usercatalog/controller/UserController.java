@@ -33,7 +33,7 @@ public class UserController {
 
     @GetMapping(path = "/{id}")
     public User getUserById(@PathVariable long id) {
-       return userService.getUserById(id);
+        return userService.getUserById(id);
     }
 
     @PostMapping(path = "/add")
