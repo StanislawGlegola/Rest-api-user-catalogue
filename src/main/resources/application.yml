@@ -11,3 +11,16 @@ spring:
     init:
       mode: never #using liquibase to initialize db
 
+liquibase:
+  change-log: classpath:db/changelog/db.changelog-master.yaml
+  enabled: true
+  drop-first: true
+  default-schema: twitter
+  default-catalog: twitter
+  contexts: dev
+  
+
+logging:
+  level:
+    liquibase: WARN
+

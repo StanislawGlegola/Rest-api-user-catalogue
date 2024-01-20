@@ -54,10 +54,17 @@ public class UserController {
     @PatchMapping(path = "/update-field/{id}")
     public ResponseEntity<Void> updateUserField(@PathVariable("id") long id, @RequestBody User updatedUser) {
         User user = userService.getUserById(id);
-        if (!updatedUser.getUserName().equals(user.getUserName()))
-            user.setUserName(updatedUser.getUserName());
         if (updatedUser.getAge() != user.getAge())
             user.setAge(updatedUser.getAge());
+        if (!updatedUser.getUserName().equals(user.getUserName()))
+            user.setUserName(updatedUser.getUserName());
+        if (!updatedUser.getEmail().equals(user.getEmail()))
+            user.setEmail(updatedUser.getEmail());
+        if (!updatedUser.getGender().equals(user.getGender()))
+            user.setGender(updatedUser.getGender());
+        if (!updatedUser.getDescription().equals(user.getDescription()))
+            user.setDescription(updatedUser.getDescription());
+
         userService.updateUser(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }

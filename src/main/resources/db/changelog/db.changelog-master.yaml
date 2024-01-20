@@ -3,3 +3,5 @@ databaseChangeLog:
       file: db/changelog/db.changelog-001-create-table-users.yaml
   - include:
       file: db/changelog/db.changelog-002-fill-users-table-with-dummy-values.yaml
+  - include:
+      file: db/changelog/db.changelog-003-alter-table-users-advanced-user.yaml
