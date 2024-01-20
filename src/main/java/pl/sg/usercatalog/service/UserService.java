@@ -5,14 +5,17 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 import pl.sg.usercatalog.model.User;
 import pl.sg.usercatalog.repository.JDBCUserRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 @EnableCaching
+@EnableTransactionManagement
 public class UserService {
 
     private JDBCUserRepository jdbcUserRepository;
@@ -37,12 +40,18 @@ public class UserService {
     @Transactional
     @CacheEvict(value = "users", allEntries = true)
     public void addUser(List<User> userList) {
+        for (User user : userList) {
+            user.setRegistrationDate(LocalDateTime.now());
+            user.setModificationDate(LocalDateTime.now());
+        }
         jdbcUserRepository.addUser(userList);
     }
 
     @Transactional
     @CacheEvict(value = "users", allEntries = true)
     public void updateUser(User user) {
+        user.setModificationDate(LocalDateTime.now());
+        user.setModified(true);
         jdbcUserRepository.updateUser(user);
     }
 
