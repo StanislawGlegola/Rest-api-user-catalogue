@@ -1,17 +1,17 @@
 package pl.sg.usercatalog.repository;
 
-import pl.sg.usercatalog.model.User;
+import pl.sg.usercatalog.model.UserDAO;
 
 import java.util.List;
 
 public interface UserRepository {
-    List<User> getUserList();
+    List<UserDAO> getUserList();
 
-    User getUserById(long userId);
+    UserDAO getUserById(long userId);
 
-    void addUser(List<User> userList);
+    void addUser(List<UserDAO> userList);
 
     void deleteUserById(long id);
 
-    void updateUser(User user);
+    void updateUser(UserDAO user);
 }

@@ -3,7 +3,7 @@ package pl.sg.usercatalog.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.sg.usercatalog.model.User;
+import pl.sg.usercatalog.model.UserDTO;
 import pl.sg.usercatalog.service.UserService;
 
 import java.util.List;
@@ -19,19 +19,19 @@ public class UserController {
     }
 
     @GetMapping(path = "/all")
-    public ResponseEntity<List<User>> getUsersList() {
-        List<User> userList = userService.getUserList();
+    public ResponseEntity<List<UserDTO>> getUsersList() {
+        List<UserDTO> userList = userService.getUserList();
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable long id) {
-        User user = userService.getUserById(id);
+    public ResponseEntity<UserDTO> getUserById(@PathVariable long id) {
+        UserDTO user = userService.getUserById(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @PostMapping(path = "/add")
-    public ResponseEntity<Void> addUser(@RequestBody List<User> userList) {
+    public ResponseEntity<Void> addUser(@RequestBody List<UserDTO> userList) {
         userService.addUser(userList);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -43,8 +43,8 @@ public class UserController {
     }
 
     @PutMapping(path = "/update/{id}")
-    public ResponseEntity<Void> updateUser(@PathVariable("id") long id, @RequestBody User updatedUser) {
-        User user = userService.getUserById(id);
+    public ResponseEntity<Void> updateUser(@PathVariable("id") long id, @RequestBody UserDTO updatedUser) {
+        UserDTO user = userService.getUserById(id);
         user.setUserName(updatedUser.getUserName());
         user.setAge(updatedUser.getAge());
         userService.updateUser(user);
@@ -52,8 +52,8 @@ public class UserController {
     }
 
     @PatchMapping(path = "/update-field/{id}")
-    public ResponseEntity<Void> updateUserField(@PathVariable("id") long id, @RequestBody User updatedUser) {
-        User user = userService.getUserById(id);
+    public ResponseEntity<Void> updateUserField(@PathVariable("id") long id, @RequestBody UserDTO updatedUser) {
+        UserDTO user = userService.getUserById(id);
         if (updatedUser.getAge() != user.getAge())
             user.setAge(updatedUser.getAge());
         if (!updatedUser.getUserName().equals(user.getUserName()))

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import pl.sg.usercatalog.model.User;
+import pl.sg.usercatalog.model.UserDAO;
 
 import java.util.List;
 
@@ -19,26 +19,26 @@ public class JDBCUserRepository implements UserRepository {
     }
 
     @Override
-    public List<User> getUserList() {
-        return jdbcTemplate.query("SELECT id, username, age, email, gender, description, modified, modificationDate, registrationDate FROM users", BeanPropertyRowMapper.newInstance(User.class));
+    public List<UserDAO> getUserList() {
+        return jdbcTemplate.query("SELECT id, username, age, email, gender, description, modified, modificationDate, registrationDate FROM users", BeanPropertyRowMapper.newInstance(UserDAO.class));
     }
 
     @Override
-    public User getUserById(long id) {
-        return jdbcTemplate.queryForObject("SELECT id, username, age, email, gender, description, modified, modificationDate, registrationDate FROM users " + "WHERE id = ?", BeanPropertyRowMapper.newInstance(User.class),
+    public UserDAO getUserById(long id) {
+        return jdbcTemplate.queryForObject("SELECT id, username, age, email, gender, description, modified, modificationDate, registrationDate FROM users " + "WHERE id = ?", BeanPropertyRowMapper.newInstance(UserDAO.class),
                 id);
     }
 
     @Override
-    public void addUser(List<User> userList) {
+    public void addUser(List<UserDAO> userList) {
         userList.forEach(user -> jdbcTemplate.update("INSERT users(username, age, email, gender, description, modificationDate, registrationDate, modified) values(?,?,?,?,?,?,?,?)",
-                user.getUserName(), user.getAge(), user.getEmail(), user.getGender().name(), user.getDescription(), user.getModificationDate(), user.getRegistrationDate(), user.isModified()));
+                user.getUserName(), user.getAge(), user.getEmail(), user.getGender().name(), user.getDescription(), user.getModificationDate(), user.getRegistrationDate(), String.valueOf(user.isModified())));
     }
 
     @Override
-    public void updateUser(User user) {
+    public void updateUser(UserDAO user) {
         jdbcTemplate.update("UPDATE users SET username = ?, age = ?, email = ?, gender = ?, description = ?, modificationDate = ?, registrationDate = ?, modified  = ? WHERE id = ? ",
-                user.getUserName(), user.getAge(), user.getEmail(), user.getGender().name(), user.getDescription(), user.getModificationDate(), user.getRegistrationDate(), user.isModified(), user.getId());
+                user.getUserName(), user.getAge(), user.getEmail(), user.getGender().name(), user.getDescription(), user.getModificationDate(), user.getRegistrationDate(), String.valueOf(user.isModified()), user.getId());
     }
 
     @Override
