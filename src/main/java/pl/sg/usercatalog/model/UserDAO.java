@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
-@RedisHash("User")
+@RedisHash("UserDAO")
 public class UserDAO {
     private long id;
     private String userName;

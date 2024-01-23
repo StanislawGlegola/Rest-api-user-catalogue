@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
-import pl.sg.usercatalog.model.User;
+import pl.sg.usercatalog.model.UserDTO;
 
 import static java.lang.System.getenv;
 
@@ -22,8 +22,8 @@ public class RedisClient {
     }
 
     @Bean
-    public RedisTemplate<String, User> redisTemplate() {
-        RedisTemplate<String, User> template = new RedisTemplate<>();
+    public RedisTemplate<String, UserDTO> redisTemplate() {
+        RedisTemplate<String, UserDTO> template = new RedisTemplate<>();
         template.setConnectionFactory(jedisConnectionFactory());
         return template;
     }

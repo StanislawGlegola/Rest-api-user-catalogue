@@ -10,8 +10,8 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
-@RedisHash("User")
-public class User implements Serializable {
+@RedisHash("UserDTO")
+public class UserDTO implements Serializable {
     @ApiModelProperty(hidden = true)
     private long id;
     private String userName;
@@ -23,7 +23,7 @@ public class User implements Serializable {
     private LocalDateTime modificationDate;
     private boolean modified;
 
-    public User(String userName, int age, String email, String description, LocalDateTime registrationDate, LocalDateTime modificationDate, boolean modified, Gender gender) {
+    public UserDTO(String userName, int age, String email, String description, LocalDateTime registrationDate, LocalDateTime modificationDate, boolean modified, Gender gender) {
         this.userName = userName;
         this.age = age;
         this.email = email;

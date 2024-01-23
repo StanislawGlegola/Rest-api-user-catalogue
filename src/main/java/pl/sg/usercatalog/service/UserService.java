@@ -3,11 +3,13 @@ package pl.sg.usercatalog.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
-import pl.sg.usercatalog.model.User;
+import pl.sg.usercatalog.model.UserDAO;
+import pl.sg.usercatalog.model.UserDTO;
 import pl.sg.usercatalog.repository.JDBCUserRepository;
 
 import java.time.LocalDateTime;
@@ -19,44 +21,48 @@ import java.util.List;
 public class UserService {
 
     private JDBCUserRepository jdbcUserRepository;
+    private UserMapper userMapper;
 
     @Autowired
-    public UserService(JDBCUserRepository jdbcUserRepository) {
+    public UserService(JDBCUserRepository jdbcUserRepository, UserMapper userMapper) {
         this.jdbcUserRepository = jdbcUserRepository;
+        this.userMapper = userMapper;
+    }
+
+    @Cacheable(value = "usersList")
+    public List<UserDTO> getUserList() {
+        System.out.println("Data not cached, getting users from database.");
+        return userMapper.toUserDTOList(jdbcUserRepository.getUserList());
     }
 
     @Cacheable(value = "users")
-    public List<User> getUserList() {
+    public UserDTO getUserById(long id) {
         System.out.println("Data not cached, getting users from database.");
-        return jdbcUserRepository.getUserList();
-    }
-
-    @Cacheable(value = "users")
-    public User getUserById(long userId) {
-        System.out.println("Data not cached, getting users from database.");
-        return jdbcUserRepository.getUserById(userId);
+        return userMapper.toUserDTO(jdbcUserRepository.getUserById(id));
     }
 
     @Transactional
-    @CacheEvict(value = "users", allEntries = true)
-    public void addUser(List<User> userList) {
-        for (User user : userList) {
-            user.setRegistrationDate(LocalDateTime.now());
-            user.setModificationDate(LocalDateTime.now());
+    @CacheEvict(value = "usersList", allEntries = true)
+    public void addUser(List<UserDTO> userList) {
+        List<UserDAO> userDAOList = userMapper.toUserDAOList(userList);
+        for (UserDAO userDAO : userDAOList) {
+            userDAO.setRegistrationDate(LocalDateTime.now());
+            userDAO.setModified(false);
         }
-        jdbcUserRepository.addUser(userList);
+        jdbcUserRepository.addUser(userDAOList);
     }
 
     @Transactional
-    @CacheEvict(value = "users", allEntries = true)
-    public void updateUser(User user) {
-        user.setModificationDate(LocalDateTime.now());
-        user.setModified(true);
-        jdbcUserRepository.updateUser(user);
+    @Caching(evict = {@CacheEvict(value = "usersList", allEntries = true), @CacheEvict("users")})
+    public void updateUser(UserDTO userDTO) {
+        UserDAO userDAO = userMapper.toUserDAO(userDTO);
+        userDAO.setModificationDate(LocalDateTime.now());
+        userDAO.setModified(true);
+        jdbcUserRepository.updateUser(userDAO);
     }
 
     @Transactional
-    @CacheEvict(value = "users", allEntries = true)
+    @Caching(evict = {@CacheEvict(value = "usersList", allEntries = true), @CacheEvict("users")})
     public void deleteUserById(long id) {
         jdbcUserRepository.deleteUserById(id);
     }
