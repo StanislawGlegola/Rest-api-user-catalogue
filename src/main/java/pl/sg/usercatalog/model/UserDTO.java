@@ -1,15 +1,18 @@
 package pl.sg.usercatalog.model;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.redis.core.RedisHash;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @RedisHash("User")
-public class UserDAO {
+public class User implements Serializable {
+    @ApiModelProperty(hidden = true)
     private long id;
     private String userName;
     private int age;
@@ -20,7 +23,7 @@ public class UserDAO {
     private LocalDateTime modificationDate;
     private boolean modified;
 
-    public UserDAO(String userName, int age, String email, String description, LocalDateTime registrationDate, LocalDateTime modificationDate, boolean modified, Gender gender) {
+    public User(String userName, int age, String email, String description, LocalDateTime registrationDate, LocalDateTime modificationDate, boolean modified, Gender gender) {
         this.userName = userName;
         this.age = age;
         this.email = email;
