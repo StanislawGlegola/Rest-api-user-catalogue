@@ -8,7 +8,7 @@ import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import pl.sg.usercatalog.model.UserDAO;
 import pl.sg.usercatalog.model.UserDTO;
-import pl.sg.usercatalog.repository.JDBCUserRepository;
+import pl.sg.usercatalog.repository.UserRepositoryImpl;
 
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -28,7 +28,7 @@ public class UserServiceCacheTest {
     private CacheManager cacheManager;
 
     @MockBean
-    private JDBCUserRepository jdbcUserRepository;
+    private UserRepositoryImpl userRepositoryImpl;
 
     @Test
     public void testCacheHit() {
@@ -39,7 +39,7 @@ public class UserServiceCacheTest {
         Cache usersCache = cacheManager.getCache("users");
 
         //when
-        when(jdbcUserRepository.getUserById(1L)).thenReturn(userDAO);
+        when(userRepositoryImpl.getUserById(1L)).thenReturn(userDAO);
 
         //then
         userService.getUserById(1L);
@@ -55,7 +55,7 @@ public class UserServiceCacheTest {
         Cache usersCache = cacheManager.getCache("users");
 
         //when
-        when(jdbcUserRepository.getUserById(1L)).thenReturn(userMapper.toUserDAO(user));
+        when(userRepositoryImpl.getUserById(1L)).thenReturn(userMapper.toUserDAO(user));
 
         //then
         userService.getUserById(1L);
