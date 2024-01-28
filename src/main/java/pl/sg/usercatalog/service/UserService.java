@@ -29,15 +29,14 @@ public class UserService {
         this.userMapper = userMapper;
     }
 
-    @Cacheable(value = "usersList")
+    @Cacheable(value = "usersList", keyGenerator = "customKeyGenerator")
     public List<UserDTO> getUserList() {
         System.out.println("Data not cached, getting users from database.");
         return userMapper.toUserDTOList(jdbcUserRepository.getUserList());
     }
 
-    @Cacheable(value = "users")
+    @Cacheable(value = "users", key = "#id")
     public UserDTO getUserById(long id) {
-        System.out.println("Data not cached, getting users from database.");
         return userMapper.toUserDTO(jdbcUserRepository.getUserById(id));
     }
 
@@ -47,13 +46,14 @@ public class UserService {
         List<UserDAO> userDAOList = userMapper.toUserDAOList(userList);
         for (UserDAO userDAO : userDAOList) {
             userDAO.setRegistrationDate(LocalDateTime.now());
+            userDAO.setModificationDate(null);
             userDAO.setModified(false);
         }
         jdbcUserRepository.addUser(userDAOList);
     }
 
     @Transactional
-    @Caching(evict = {@CacheEvict(value = "usersList", allEntries = true), @CacheEvict("users")})
+    @Caching(evict = {@CacheEvict(value = "usersList", allEntries = true), @CacheEvict(value = "users", key = "#userDTO.id")})
     public void updateUser(UserDTO userDTO) {
         UserDAO userDAO = userMapper.toUserDAO(userDTO);
         userDAO.setModificationDate(LocalDateTime.now());
@@ -62,7 +62,7 @@ public class UserService {
     }
 
     @Transactional
-    @Caching(evict = {@CacheEvict(value = "usersList", allEntries = true), @CacheEvict("users")})
+    @Caching(evict = {@CacheEvict(value = "usersList", allEntries = true), @CacheEvict(value = "users", key = "#id")})
     public void deleteUserById(long id) {
         jdbcUserRepository.deleteUserById(id);
     }
