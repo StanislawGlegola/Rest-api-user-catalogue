@@ -1,10 +1,9 @@
-package pl.sg.usercatalog.service;
+package pl.sg.usercatalog.repository;
 
 import org.junit.Test;
 import org.mockito.Mockito;
 import pl.sg.usercatalog.model.Gender;
 import pl.sg.usercatalog.model.UserDAO;
-import pl.sg.usercatalog.repository.JDBCUserRepository;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -13,9 +12,9 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
-public class JDBCRepositoryTests {
+public class UserRepositoryImplTest {
 
-    final JDBCUserRepository jdbcUserRepository = mock(JDBCUserRepository.class);
+    final UserRepositoryImpl userRepositoryImpl = mock(UserRepositoryImpl.class);
 
     @Test
     public void shouldMockUsersList() {
@@ -23,10 +22,10 @@ public class JDBCRepositoryTests {
         UserDAO user = new UserDAO("Viktor", 100, "Viktor@sg.com", "Hello", LocalDateTime.now(), LocalDateTime.now(), true, Gender.MALE);
         UserDAO user2 = new UserDAO("Volodymyr", 44, "Volodymyr@sg.pl", "Hello", LocalDateTime.now(), LocalDateTime.now(), true, Gender.MALE);
         UserDAO user3 = new UserDAO("Petro", 30, "Petro@sg.pl", "Hello", LocalDateTime.now(), LocalDateTime.now(), true, Gender.MALE);
-        Mockito.when(jdbcUserRepository.getUserList()).thenReturn(Arrays.asList(user, user2));
+        Mockito.when(userRepositoryImpl.getUserList()).thenReturn(Arrays.asList(user, user2));
 
         //when
-        List<UserDAO> userList = jdbcUserRepository.getUserList();
+        List<UserDAO> userList = userRepositoryImpl.getUserList();
 
         //then
         assertThat(userList)

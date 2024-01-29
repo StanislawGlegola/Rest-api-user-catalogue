@@ -1,27 +1,20 @@
 package pl.sg.usercatalog.repository;
 
-import org.springframework.beans.factory.annotation.Value;
+import liquibase.integration.spring.SpringLiquibase;
+import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.apache.commons.dbcp2.BasicDataSource;
 
 import javax.sql.DataSource;
 
 @Configuration
-public class RepositoryConfiguration{
+public class RepositoryConfiguration {
 
-    @Value("${spring.datasource.url}")
-    private String URL;
-
-    @Value("${spring.datasource.driver-class-name}")
-    private String DRIVER;
-
-    @Value("${spring.datasource.username:root}")
-    private String USERNAME;
-
-    @Value("${spring.datasource.password}")
-    private String PASSWORD;
+    @Autowired
+    private Environment env;
 
     @Bean
     public JdbcTemplate jdbcTemplate(DataSource dataSource) {
@@ -31,10 +24,22 @@ public class RepositoryConfiguration{
     @Bean
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setUrl(URL);
-        dataSource.setUsername(USERNAME);
-        dataSource.setPassword(PASSWORD);
-        dataSource.setDriverClassName(DRIVER);
+        String dbHost = env.getProperty("DB_HOST");
+        String dbPort = env.getProperty("DB_PORT");
+        String dbSid = env.getProperty("DB_SID");
+        String url = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbSid + "?allowPublicKeyRetrieval=true&useSSL=false";
+        dataSource.setUrl(url);
+        dataSource.setUsername(env.getProperty("DB_USERNAME"));
+        dataSource.setPassword(env.getProperty("DB_PASSWORD"));
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         return dataSource;
+    }
+
+    @Bean
+    public SpringLiquibase liquibase() {
+        SpringLiquibase liquibase = new SpringLiquibase();
+        liquibase.setDataSource(dataSource());
+        liquibase.setChangeLog("classpath:db/changelog/db.changelog-master.yaml");
+        return liquibase;
     }
 }
