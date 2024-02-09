@@ -1,59 +1,26 @@
 databaseChangeLog:
   - changeSet:
-      id: alter-table-users-add-columns
+      id: add-subscribers-table
       author: sglegola
       changes:
         - sql: |
-            ALTER TABLE users
-                ADD COLUMN email VARCHAR(255),
-                ADD COLUMN description TEXT,
-                ADD COLUMN gender VARCHAR(10),
-                ADD COLUMN modified ENUM('FALSE', 'TRUE') DEFAULT 'FALSE',
-                ADD COLUMN registrationDate DATETIME DEFAULT CURRENT_TIMESTAMP,
-                ADD COLUMN modificationDate DATETIME DEFAULT NULL;
+            CREATE TABLE subscribers (
+                user_id INT NOT NULL,
+                subscribes_to_id INT NOT NULL,
+                PRIMARY KEY (user_id, subscribes_to_id),
+                FOREIGN KEY (user_id) REFERENCES users(id),
+                FOREIGN KEY (subscribes_to_id) REFERENCES users(id)
+                );
 
   - changeSet:
-      id: fill-exising-users-with-dummy-values
+      id: add-subscribers
       author: sglegola
       changes:
-        - sql: |
-            UPDATE users
-            SET email = 'example1@email.com',
-                gender = 'FEMALE',
-                description = 'Sample description 1'
-            WHERE id = 1;
-
-        - sql: |
-            UPDATE users
-            SET email = 'example2@email.com',
-                gender = 'MALE',
-                description = 'Sample description 2'
-            WHERE id = 2;
-
-        - sql: |
-            UPDATE users
-            SET email = 'example3@email.com',
-                gender = 'MALE',
-                description = 'Sample description 3'
-            WHERE id = 3;
-
-        - sql: |
-            UPDATE users
-            SET email = 'example4@email.com',
-                gender = 'FEMALE',
-                description = 'Sample description 4'
-            WHERE id = 4;
-
-        - sql: |
-            UPDATE users
-            SET email = 'example5@email.com',
-                gender = 'MALE',
-                description = 'Sample description 5'
-            WHERE id = 5;
-
-        - sql: |
-            UPDATE users
-            SET email = 'example6@email.com',
-                gender = 'MALE',
-                description = 'Sample description 6'
-            WHERE id = 6;
+        - sql: INSERT into subscribers (user_id, subscribes_to_id) values (1, 2)
+        - sql: INSERT into subscribers (user_id, subscribes_to_id) values (1, 3)
+        - sql: INSERT into subscribers (user_id, subscribes_to_id) values (2, 3)
+        - sql: INSERT into subscribers (user_id, subscribes_to_id) values (4, 2)
+        - sql: INSERT into subscribers (user_id, subscribes_to_id) values (3, 2)
+        - sql: INSERT into subscribers (user_id, subscribes_to_id) values (2, 1)
+        - sql: INSERT into subscribers (user_id, subscribes_to_id) values (5, 3)
+        - sql: INSERT into subscribers (user_id, subscribes_to_id) values (4, 3)
