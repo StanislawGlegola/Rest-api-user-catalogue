@@ -37,22 +37,22 @@ public class SubscribersService {
         } else if (subscribersRepository.isSubscribed(subscribers.getUserId(), subscribers.getSubscribesToId())) {
             throw new SubscriptionExceptions("User with id " + subscribers.getUserId() + " is already subscribed to user with id " + subscribers.getSubscribesToId());
         } else {
-            result = true;
+            return result = true;
         }
-        return result;
     }
 
-    @Transactional
-    public boolean addSubscribers(List<Subscribers> subscribersList) {
-        for (Subscribers subscribers : subscribersList) {
-            if (validateCorrectSubscription(subscribers)) {
-                subscribersRepository.addSubscription(subscribers);
-            } else {
-                return false;
-            }
+@Transactional
+public boolean addSubscribers(List<Subscribers> subscribersList) {
+    boolean result = false;
+    for (Subscribers subscribers : subscribersList) {
+        if (!validateCorrectSubscription(subscribers)) {
+            return false;
         }
-        return result;
+        subscribersRepository.addSubscription(subscribers);
+        result = true;
     }
+    return result;
+}
 
     public void deleteEverySubscriptionByUserId(Subscribers subscribers) {
         subscribersRepository.deleteEverySubscriptionByUserId(subscribers.getUserId());
