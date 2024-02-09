@@ -1,14 +1,10 @@
 package pl.sg.usercatalog.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
-import javax.servlet.http.HttpServletRequest;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -21,5 +17,15 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(EmptyResultDataAccessException.class)
     public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException e) {
         return new ResponseEntity<>("No User found with provided ID. Stacktrace: " + e, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<String> handleIllegalStateException(IllegalStateException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NullPointerException.class)
+    public ResponseEntity<String> handleNullPointerException(NullPointerException e) {
+        return new ResponseEntity<>("A required field is missing: " + e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }
