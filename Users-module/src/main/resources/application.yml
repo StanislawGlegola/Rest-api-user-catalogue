@@ -1,0 +1,14 @@
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  sql:
+    init:
+      mode: never #using liquibase to initialize db
+
+server:
+  port: 8082
+
+logging:
+  level:
+    liquibase: WARN
