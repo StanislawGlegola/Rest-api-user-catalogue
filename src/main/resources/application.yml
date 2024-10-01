@@ -9,3 +9,6 @@ spring:
 logging:
   level:
     liquibase: WARN
+
+server:
+  port: 8081
