@@ -1,3 +1,6 @@
 [submodule "users-service"]
 	path = users-service
 	url = https://github.com/StanislawGlegola/twitter
+[submodule "subscribers-service"]
+	path = subscribers-service
+	url = https://github.com/StanislawGlegola/twitter
