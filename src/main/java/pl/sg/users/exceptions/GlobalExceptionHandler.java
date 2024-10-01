@@ -24,14 +24,4 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleNullPointerException(NullPointerException e) {
         return new ResponseEntity<>("A required field is missing: " + e.getMessage(), HttpStatus.BAD_REQUEST);
     }
-
-    @ExceptionHandler(SubscriptionExceptions.class)
-    public ResponseEntity<String> handleSubscriptionExceptions(SubscriptionExceptions e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(DuplicateKeyException.class)
-    public ResponseEntity<String> handleDuplicateKeyException(SubscriptionExceptions e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
-    }
 }

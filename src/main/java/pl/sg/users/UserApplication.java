@@ -6,10 +6,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-public class Twitter {
+public class UserApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Twitter.class, args);
+		SpringApplication.run(UserApplication.class, args);
 	}
 
 }

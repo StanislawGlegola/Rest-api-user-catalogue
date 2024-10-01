@@ -1,6 +1,5 @@
 package pl.sg.usercatalog.util;
 
-import com.google.common.base.Predicates;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -20,8 +19,8 @@ public class SwaggerConfiguration {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("pl.sg.usercatalog.controller"))
-                .paths(Predicates.or(PathSelectors.ant("/user/**"), PathSelectors.ant("/subscribers/**")))
+                .apis(RequestHandlerSelectors.basePackage("pl.sg.subscribers.controller"))
+                .paths(PathSelectors.ant("/user/**"))
                 .build()
                 .pathMapping("/")
                 .apiInfo(createApiInfo());
