@@ -1,3 +1,0 @@
-[submodule "subscribers-service"]
-	path = subscribers-service
-	url = https://github.com/StanislawGlegola/subscribers-service.git
