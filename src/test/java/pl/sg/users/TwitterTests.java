@@ -1,4 +1,4 @@
-package pl.sg.usercatalog;
+package pl.sg.users;
 
 import io.restassured.RestAssured;
 import org.hamcrest.Matchers;

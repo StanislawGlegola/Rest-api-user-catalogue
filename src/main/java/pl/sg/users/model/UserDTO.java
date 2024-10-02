@@ -1,4 +1,4 @@
-package pl.sg.usercatalog.model;
+package pl.sg.users.model;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

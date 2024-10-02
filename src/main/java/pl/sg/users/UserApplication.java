@@ -1,4 +1,4 @@
-package pl.sg.usercatalog;
+package pl.sg.users;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

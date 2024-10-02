@@ -1,4 +1,4 @@
-package pl.sg.usercatalog.repository;
+package pl.sg.users.repository;
 
 import liquibase.integration.spring.SpringLiquibase;
 import org.apache.commons.dbcp2.BasicDataSource;

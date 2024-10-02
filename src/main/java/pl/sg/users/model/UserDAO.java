@@ -1,4 +1,4 @@
-package pl.sg.usercatalog.model;
+package pl.sg.users.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

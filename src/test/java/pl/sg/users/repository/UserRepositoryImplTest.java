@@ -1,9 +1,9 @@
-package pl.sg.usercatalog.repository;
+package pl.sg.users.repository;
 
 import org.junit.Test;
 import org.mockito.Mockito;
-import pl.sg.usercatalog.model.Gender;
-import pl.sg.usercatalog.model.UserDAO;
+import pl.sg.users.model.Gender;
+import pl.sg.users.model.UserDAO;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;

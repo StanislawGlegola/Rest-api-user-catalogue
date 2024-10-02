@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   mysql:
-    container_name: twitter-mysql
+    container_name: usr-mysql
     image: mysql
     restart: unless-stopped
     env_file: ./.env
@@ -12,7 +12,7 @@ services:
     ports:
       - "${DB_PORT}:3306"
   redis:
-    container_name: twitter-redis
+    container_name: usr-redis
     image: redis
     restart: unless-stopped
     env_file: ./.env

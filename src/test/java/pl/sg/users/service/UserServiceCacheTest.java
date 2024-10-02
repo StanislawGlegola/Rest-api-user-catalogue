@@ -1,4 +1,4 @@
-package pl.sg.usercatalog.service;
+package pl.sg.users.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,9 +6,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
-import pl.sg.usercatalog.model.UserDAO;
-import pl.sg.usercatalog.model.UserDTO;
-import pl.sg.usercatalog.repository.UserRepositoryImpl;
+import pl.sg.users.model.UserDAO;
+import pl.sg.users.model.UserDTO;
+import pl.sg.users.repository.UserRepositoryImpl;
 
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;

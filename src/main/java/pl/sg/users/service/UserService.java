@@ -1,4 +1,4 @@
-package pl.sg.usercatalog.service;
+package pl.sg.users.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -8,9 +8,9 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
-import pl.sg.usercatalog.model.UserDAO;
-import pl.sg.usercatalog.model.UserDTO;
-import pl.sg.usercatalog.repository.UserRepositoryImpl;
+import pl.sg.users.model.UserDAO;
+import pl.sg.users.model.UserDTO;
+import pl.sg.users.repository.UserRepositoryImpl;
 
 import java.time.LocalDateTime;
 import java.util.List;

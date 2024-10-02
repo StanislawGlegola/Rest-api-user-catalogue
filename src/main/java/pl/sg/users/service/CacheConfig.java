@@ -1,4 +1,4 @@
-package pl.sg.usercatalog.service;
+package pl.sg.users.service;
 
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;

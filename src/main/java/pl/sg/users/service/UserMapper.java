@@ -1,9 +1,9 @@
-package pl.sg.usercatalog.service;
+package pl.sg.users.service;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import pl.sg.usercatalog.model.UserDAO;
-import pl.sg.usercatalog.model.UserDTO;
+import pl.sg.users.model.UserDAO;
+import pl.sg.users.model.UserDTO;
 
 import java.util.List;
 

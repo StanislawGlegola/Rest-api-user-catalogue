@@ -1,10 +1,10 @@
-package pl.sg.usercatalog.controller;
+package pl.sg.users.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.sg.usercatalog.model.UserDTO;
-import pl.sg.usercatalog.service.UserService;
+import pl.sg.users.model.UserDTO;
+import pl.sg.users.service.UserService;
 
 import java.util.List;
 

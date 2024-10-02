@@ -8,10 +8,10 @@
         <version>2.7.7</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>pl.sg</groupId>
-    <artifactId>twitter</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>usercatalog</name>
+    <groupId>pl.sg.users</groupId>
+    <artifactId>users</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <name>users-service</name>
     <description>Simple User Catalog</description>
     <properties>
         <java.version>16</java.version>
