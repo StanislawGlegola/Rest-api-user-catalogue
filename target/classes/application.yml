@@ -1,0 +1,11 @@
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  sql:
+    init:
+      mode: never #using liquibase to initialize db
+
+logging:
+  level:
+    liquibase: WARN
