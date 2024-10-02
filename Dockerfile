@@ -1,1 +1,0 @@
-MAINTAINER Stanislaw Glegola <stanislaw.glegola@gmail.com>
