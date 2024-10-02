@@ -9,7 +9,7 @@ import pl.sg.users.model.UserDTO;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-10-02T14:07:25+0200",
+    date = "2024-10-02T15:48:07+0200",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 22.0.1 (Oracle Corporation)"
 )
 @Component
