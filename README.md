@@ -1,18 +1,26 @@
-"# Rest-api-user-catalog is a dojo project realized in spare time to summarize knowledge. <br> It revolve around combining various technologies in single repository.
+"# Twitter is a dojo project realized in spare time to summarize knowledge. <br> It revolve around combining various technologies in single repository.
 Notice that it can risk with suboptimal code appliance in this particular project. <br>
 But as I mentioned - it's a dojo."
 
-<strong>Important environment variables:</strong>
-<em>
-<br>DB_USERNAME=root;
-<br>DB_PASSWORD=p@55w0rd;
-<br>DB_HOST=localhost;
-<br>DB_PORT=3307;
-<br>DB_SID=subscribers;
-</em>
+<strong>Project includes technologies like</strong><br>
+<em>Swagger<br></em>
+<em>Jenkins<br></em>
+<em>Docker<br></em>
 
-<strong>Access to swagger-ui</strong><br>
-<em>http://localhost:8081/swagger-ui.html <br></em>
+<h1>To run Jenkis:</h1>
+1. Build Jenkins image: <br>
+    docker build -t myjenkins-blueocean . <br>
 
-<strong>Docker compose this project</strong><br>
-<em>docker-compose up -d </em>
+2. Run jenkins network: <br>
+    docker network create jenkins <br>
+
+3. Start Jenkins container: <br>
+   docker run --name jenkins-blueocean --restart=on-failure --detach `
+    --network jenkins --env DOCKER_HOST=tcp://docker:2376 `
+    --env DOCKER_CERT_PATH=/certs/client --env DOCKER_TLS_VERIFY=1 `
+    --volume jenkins-data:/var/jenkins_home `
+    --volume jenkins-docker-certs:/certs/client:ro `
+    --publish 8080:8080 --publish 50000:50000 myjenkins-blueocean
+
+4. Get initial password: <br>
+   docker exec jenkins-blueocean cat /var/jenkins_home/secrets/initialAdminPassword
