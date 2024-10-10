@@ -3,9 +3,9 @@ Notice that it can risk with suboptimal code appliance in this particular projec
 But as I mentioned - it's a dojo."
 
 <strong>Project includes technologies like</strong><br>
-<em>Swagger<br></em>
 <em>Jenkins<br></em>
 <em>Docker<br></em>
+<em>Swagger<br></em>
 
 <h1>To run Jenkis:</h1>
 1. Build Jenkins image: <br>
@@ -24,3 +24,7 @@ But as I mentioned - it's a dojo."
 
 4. Get initial password: <br>
    docker exec jenkins-blueocean cat /var/jenkins_home/secrets/initialAdminPassword
+   
+<h2>Or follow the tutorial</h2>
+<strong>Configure jenkins using this tutorial</strong><br>
+<em>https://www.youtube.com/watch?v=6YZvp2GwT0A </em>
