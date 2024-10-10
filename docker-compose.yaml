@@ -1,0 +1,26 @@
+version: '3.7'
+services:
+  jenkins:
+    container_name: jenkins-blueocean
+    image: myjenkins-blueocean
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - jenkins-docker-certs:/certs/client:ro  # Dodanie certyfikatów Dockera
+      - /var/run/docker.sock:/var/run/docker.sock  # Dodanie socketa Dockera z hosta do kontenera
+    environment:
+      DOCKER_HOST: "tcp://docker:2376"
+      DOCKER_CERT_PATH: "/certs/client"
+      DOCKER_TLS_VERIFY: 1
+    networks:
+      - jenkins
+
+volumes:
+  jenkins_home:
+  jenkins-docker-certs:  # Dodanie wolumenu na certyfikaty
+
+networks:
+  jenkins:
