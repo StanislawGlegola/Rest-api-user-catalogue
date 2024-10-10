@@ -4,3 +4,6 @@ But as I mentioned - it's a dojo."
 
 <strong>Docker compose this project</strong><br>
 <em>docker-compose up -d </em>
+
+<strong>Configure jenkins using this tutorial</strong><br>
+<em>https://www.youtube.com/watch?v=6YZvp2GwT0A </em>
